@@ -49,22 +49,30 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: _pageWidgets.elementAt(_currentIndex),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-          ],
-          currentIndex: _currentIndex,
-          onTap: _onItemTapped,
-        ),
+      ElevatedButton(
+        onPressed: _onButtonTapped,
+        child: const Text('次のページへ'),
+      ),
+      //   bottomNavigationBar: BottomNavigationBar(
+      //     items: const <BottomNavigationBarItem>[
+      //       BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+      //       BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+      //     ],
+      //     currentIndex: _currentIndex,
+      //     onTap: _onItemTapped,
+      // ),
   
     );
   }
 
-
-  void _onItemTapped(int index) {
+void _onButtonTapped() {
     setState(() {
-      _currentIndex = index;
+      _currentIndex = (_currentIndex + 1) % _pageWidgets.length; // ページを切り替えます
     });
   }
+  // void _onItemTapped(int index) {
+  //   setState(() {
+  //     _currentIndex = index;
+  //   });
+  // }
 }
