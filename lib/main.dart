@@ -48,21 +48,31 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Column(
-        children: [
-          Expanded(child: _pageWidgets.elementAt(_currentIndex)),
-          ElevatedButton(
-            onPressed: _onButtonTapped,
-            child: const Text('次のページへ'),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            ElevatedButton(
+              onPressed: () => _openPage(FeedPage()),
+              child: const Text('1'),
+            ),
+            SizedBox(height: 20), // ボタン間のスペース
+            ElevatedButton(
+              onPressed: () => _openPage(MyPage()),
+              child: const Text('2'),
           ),
         ],
+        ),
       ),
     );
   }
 
-void _onButtonTapped() {
-    setState(() {
-      _currentIndex = (_currentIndex + 1) % _pageWidgets.length; // ページを切り替えます
-    });
+  void _openPage(Widget page) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => page),
+    );
+
+
   }
 }
